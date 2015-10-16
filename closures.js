@@ -10,12 +10,14 @@ var outer = function(){
 //Invoke outer saving the return value into another variable called 'inner'.
 
   //Code Here
+  
+var inner = outer();
 
 //Once you do that, invoke inner.
 
   //Code Here
-
-
+  
+inner();
 
 //Next problem
 
@@ -34,6 +36,11 @@ var callFriend = function(){
 
   //Code Here
 
+var dial = callFriend();
+
+dial("435-215-9248");  
+
+
 
 
 //Next Problem
@@ -51,6 +58,14 @@ var callFriend = function(){
   count() // 3
   count() // 4
 
+function makeCounter(){
+  var count = 0;
+  function add(){
+    count++;
+    return count;
+  }
+  return add;
+}
 
 
 //Next Problem
@@ -62,6 +77,16 @@ var callFriend = function(){
 */
 
   //Code Here
+  
+function simple(){
+  console.log("SIMPLE!");
+}
+
+function second(fn){
+   function third(){
+    return simple();
+  }
+}
 
 
 
@@ -72,6 +97,28 @@ var callFriend = function(){
 /*
   Now, similar to the last problem, write a function called 'fnCounter' that accepts two parameters. The first parameter will be an anonymous function and the second parameter, 'N', will be a number. Now, in 'fnCounter', allow the anonymous funciton to be invoked 'N' number of times. After it's been invoked 'N' number of times, return 'STOP'.
 */
+
+function fnCounter(fn, num){
+  var count = 0;
+  return function(){
+      if(count < num){
+        count++;
+        fn();
+      } else {
+        console.log("STOP!");
+      }
+  }
+}
+
+var helloFn = function(){
+  console.log("Hello!");
+}
+
+var runFn = fnCounter(helloFn, 3);
+
+runFn();
+
+
 
 
 
