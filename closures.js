@@ -83,20 +83,21 @@ function simple(){
 }
 
 function second(fn){
-  return function(){
-    var called = false;
-    if(called === false){
-      fn();
-      called = true;
-    } else if(called === true){
-    return "Can only run the function once!";
+    var count = 0;
+    return function(){
+        if(count < 1){
+            count++;
+            fn();
+        } else {
+            console.log("Can only run this function once!");
+        }
     }
-  }
 }
 
+var mainFn = second(simple);
+mainFn();
 
 
-var fn
  
 
 
@@ -212,4 +213,3 @@ funcArr[2]() //2
 funcArr[3]() //3
 funcArr[4]() //4
 funcArr[5]() //5
-
