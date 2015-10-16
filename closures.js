@@ -83,10 +83,23 @@ function simple(){
 }
 
 function second(fn){
-   function third(){
-    return simple();
+  return function(){
+    var called = false;
+    if(called === false){
+      fn();
+      called = true;
+    } else if(called === true){
+    return "Can only run the function once!";
+    }
   }
 }
+
+
+
+var fn
+ 
+
+
 
 
 
@@ -151,6 +164,21 @@ runFn();
 */
 
     //Code Here
+    
+var counter = function(){
+    var count = 1;
+    return (function(){
+        for (var i=1; i<=5; i++) {
+            setTimeout( function timer(){
+                console.log(count);
+                count++;
+            }, i*1000 );
+        }
+    }())
+};
+
+
+counter();
 
 
 
@@ -171,4 +199,17 @@ runFn();
   *Hint: Don't let this fool you. Break down what's really happening here.
 */
 
+var funcArr = [
+    function(){
+        funcArr.push(funcArr[0]);
+        return (funcArr.length -2);
+    }  
+];
+
+funcArr[0]() //0
+funcArr[1]() //1
+funcArr[2]() //2
+funcArr[3]() //3
+funcArr[4]() //4
+funcArr[5]() //5
 
