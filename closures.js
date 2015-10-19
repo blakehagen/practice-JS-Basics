@@ -178,14 +178,21 @@ var counter = function(){
     }())
 };
 
+counter();
+
+var counter = function(){
+  for (var i=1; i<=5; i++) {
+    setTimeout(function(j){
+      return function(){
+        console.log(j);
+      };
+    }(i), i*1000);
+  }
+}
 
 counter();
 
-
-
 //Next Problem
-
-
 
 /*
   Make the following code work
